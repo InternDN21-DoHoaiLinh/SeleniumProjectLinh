@@ -32,6 +32,7 @@ public class TestLogin extends TestBase {
         String actualErrorMsg = loginPage.getErrorMsg();
         String expectedErrorMsg = Constant.LOGIN_ERROR_MESSAGE;
 
+        System.out.println("This just does nothing");
         Assert.assertEquals(actualErrorMsg, expectedErrorMsg, "Error message is not displayed as expected");
     }
 
