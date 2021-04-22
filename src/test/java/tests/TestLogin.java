@@ -18,13 +18,7 @@ public class TestLogin extends TestBase {
         homePage.open();
         homePage.gotoLoginPage();
 
-        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
-
-        String actualMsg = homePage.getWelcomeMessage();
-        String expectedMsg = "Welcome " + Constant.USERNAME;
-
-        Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
-        homePage.logOut();
+        loginPage.loginByJSON("src/test/resources/testing data/loginData.json");
     }
 
     @Test

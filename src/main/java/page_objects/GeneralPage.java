@@ -1,8 +1,13 @@
 package page_objects;
 
+import helpers.BrowserHelpers;
 import helpers.constants.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GeneralPage {
     //Locators
@@ -12,15 +17,16 @@ public class GeneralPage {
 
     //Elements
     protected WebElement getTabLogin() {
-        return Constant.WEBDRIVER.findElement(tabLogin);
+
+        return BrowserHelpers.getWebDriver().findElement(tabLogin);
     }
 
     protected WebElement getTabLogout() {
-        return Constant.WEBDRIVER.findElement(tabLogout);
+        return BrowserHelpers.getWebDriver().findElement(tabLogout);
     }
 
     protected WebElement getLblWelcomeMessage() {
-        return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
+        return BrowserHelpers.getWebDriver().findElement(lblWelcomeMessage);
     }
 
     //Methods
@@ -28,7 +34,18 @@ public class GeneralPage {
         return this.getLblWelcomeMessage().getText();
     }
 
+    public void logOut() {
+        this.getTabLogout().click();
+    }
+
     public void gotoLoginPage() {
-        this.getTabLogin().click();
+        try {
+            BrowserHelpers.myWaitVar.until(ExpectedConditions.visibilityOfElementLocated(tabLogin));
+            if (this.getTabLogin().isDisplayed()){
+                this.getTabLogin().click();
+            }
+        }catch (TimeoutException nsee){
+            System.out.println(nsee.toString());
+        }
     }
 }
