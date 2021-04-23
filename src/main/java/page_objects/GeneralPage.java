@@ -1,12 +1,9 @@
 package page_objects;
 
 import helpers.BrowserHelpers;
-import helpers.constants.Constant;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GeneralPage {
@@ -41,10 +38,10 @@ public class GeneralPage {
     public void gotoLoginPage() {
         try {
             BrowserHelpers.myWaitVar.until(ExpectedConditions.visibilityOfElementLocated(tabLogin));
-            if (this.getTabLogin().isDisplayed()){
+            if (this.getTabLogin().isDisplayed()) {
                 this.getTabLogin().click();
             }
-        }catch (TimeoutException nsee){
+        } catch (TimeoutException nsee) {
             System.out.println(nsee.toString());
         }
     }

@@ -7,8 +7,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
 public class BrowserHelpers {
     private static WebDriver driver;
     public static WebDriverWait myWaitVar;
