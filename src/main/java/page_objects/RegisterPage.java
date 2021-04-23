@@ -4,11 +4,11 @@ import helpers.BrowserHelpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class RegisterPage extends GeneralPage{
+public class RegisterPage extends GeneralPage {
     private final By _txtEmail = By.cssSelector("#email");
     private final By _txtPassword = By.cssSelector("#password");
     private final By _txtConfirmPassword = By.cssSelector("#confirmPassword");
-    private final By _txtPID = By.cssSelector("#confirmPassword");
+    private final By _txtPID = By.cssSelector("#pid");
     private final By _btnRegister = By.cssSelector("[type=submit]");
 
     public WebElement getTxtEmail() {
@@ -39,4 +39,5 @@ public class RegisterPage extends GeneralPage{
         getTxtPID().sendKeys(pid);
         getBtnRegister().submit();
     }
+
 }

@@ -2,15 +2,15 @@ package page_objects;
 
 import helpers.BrowserHelpers;
 import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GeneralPage {
     //Locators
     private final By tabLogin = By.xpath("//a[@href='/Account/Login.cshtml']");
     private final By tabLogout = By.xpath("//a[@href='/Account/Logout']");
     private final By lblWelcomeMessage = By.xpath("//div[@class='account']/strong");
+    private final By tabRegister = By.cssSelector("a[href^='/Account/Register']");
+    private final By tabBookTicket = By.cssSelector("a[href^='/Page/BookTicketPage']");
 
     //Elements
     protected WebElement getTabLogin() {
@@ -26,6 +26,10 @@ public class GeneralPage {
         return BrowserHelpers.getWebDriver().findElement(lblWelcomeMessage);
     }
 
+    protected WebElement getTabRegister() {
+        return BrowserHelpers.getWebDriver().findElement(tabRegister);
+    }
+
     //Methods
     public String getWelcomeMessage() {
         return this.getLblWelcomeMessage().getText();
@@ -36,13 +40,11 @@ public class GeneralPage {
     }
 
     public void gotoLoginPage() {
-        try {
-            BrowserHelpers.myWaitVar.until(ExpectedConditions.visibilityOfElementLocated(tabLogin));
-            if (this.getTabLogin().isDisplayed()) {
-                this.getTabLogin().click();
-            }
-        } catch (TimeoutException nsee) {
-            System.out.println(nsee.toString());
-        }
+        this.getTabLogin().click();
+    }
+
+    public void goToRegisterPage() {
+        this.getTabRegister().click();
+
     }
 }

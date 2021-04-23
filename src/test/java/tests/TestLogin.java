@@ -1,7 +1,7 @@
 package tests;
 
 
-import helpers.constants.Constant;
+import helpers.Constant;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
@@ -11,36 +11,32 @@ public class TestLogin extends TestBase {
     HomePage homePage = new HomePage();
     LoginPage loginPage = new LoginPage();
 
-    @Test
+    @Test(testName = "TC01_LOGIN", description = "Login with valid username and password")
     public void TC01() {
         System.out.println("TC01 - User can log into Railway with valid username and password");
 
-        homePage.open();
         homePage.gotoLoginPage();
 
         loginPage.loginByJSON("src/test/resources/testing data/loginData.json");
     }
 
-    @Test
+    @Test(testName = "TC02_LOGIN", description = "Login with invalid username and password")
     public void TC02() {
         System.out.println("TC02 - An error message displays when user tries to login with invalid credentials");
 
-        homePage.open();
         homePage.gotoLoginPage();
 
         loginPage.login(Constant.W_USERNAME, Constant.W_PASSWORD);
         String actualErrorMsg = loginPage.getErrorMsg();
         String expectedErrorMsg = Constant.LOGIN_ERROR_MESSAGE;
 
-        System.out.println("This just does nothing");
         Assert.assertEquals(actualErrorMsg, expectedErrorMsg, "Error message is not displayed as expected");
     }
 
-    @Test
+    @Test(testName = "TC03_LOGIN", description = "Login without password")
     public void TC03() {
-        System.out.println("TC02 - An error message displays when user tries to login without password");
+        System.out.println("TC03 - An error message displays when user tries to login without password");
 
-        homePage.open();
         homePage.gotoLoginPage();
 
         loginPage.login(Constant.W_USERNAME, "");
