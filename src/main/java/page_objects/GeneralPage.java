@@ -1,6 +1,6 @@
 package page_objects;
 
-import helpers.BrowserHelpers;
+import helpers.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -15,19 +15,19 @@ public class GeneralPage {
     //Elements
     protected WebElement getTabLogin() {
 
-        return BrowserHelpers.getWebDriver().findElement(tabLogin);
+        return Constant.WEBDRIVER.findElement(tabLogin);
     }
 
     protected WebElement getTabLogout() {
-        return BrowserHelpers.getWebDriver().findElement(tabLogout);
+        return Constant.WEBDRIVER.findElement(tabLogout);
     }
 
     protected WebElement getLblWelcomeMessage() {
-        return BrowserHelpers.getWebDriver().findElement(lblWelcomeMessage);
+        return Constant.WEBDRIVER.findElement(lblWelcomeMessage);
     }
 
     protected WebElement getTabRegister() {
-        return BrowserHelpers.getWebDriver().findElement(tabRegister);
+        return Constant.WEBDRIVER.findElement(tabRegister);
     }
 
     //Methods
