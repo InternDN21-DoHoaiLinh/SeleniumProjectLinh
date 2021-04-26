@@ -1,6 +1,6 @@
 package page_objects;
 
-import helpers.BrowserHelpers;
+import helpers.Constant;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -12,23 +12,23 @@ public class RegisterPage extends GeneralPage {
     private final By _btnRegister = By.cssSelector("[type=submit]");
 
     public WebElement getTxtEmail() {
-        return BrowserHelpers.getWebDriver().findElement(_txtEmail);
+        return Constant.WEBDRIVER.findElement(_txtEmail);
     }
 
     public WebElement getTxtPassword() {
-        return BrowserHelpers.getWebDriver().findElement(_txtPassword);
+        return Constant.WEBDRIVER.findElement(_txtPassword);
     }
 
     public WebElement getTxtConfirmPassword() {
-        return BrowserHelpers.getWebDriver().findElement(_txtConfirmPassword);
+        return Constant.WEBDRIVER.findElement(_txtConfirmPassword);
     }
 
     public WebElement getTxtPID() {
-        return BrowserHelpers.getWebDriver().findElement(_txtPID);
+        return Constant.WEBDRIVER.findElement(_txtPID);
     }
 
     public WebElement getBtnRegister() {
-        return BrowserHelpers.getWebDriver().findElement(_btnRegister);
+        return Constant.WEBDRIVER.findElement(_btnRegister);
     }
 
     //Methods
