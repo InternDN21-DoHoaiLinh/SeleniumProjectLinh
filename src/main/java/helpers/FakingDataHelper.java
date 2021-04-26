@@ -9,11 +9,11 @@ public class FakingDataHelper {
         return faker.internet().emailAddress();
     }
 
-    public static String randomText() {
+    public static String randomPassword() {
         return faker.letterify("?????????");
     }
 
-    public static String randomNumber() {
+    public static String randomPID() {
         return faker.numerify("##########");
     }
 }
