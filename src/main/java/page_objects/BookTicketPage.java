@@ -1,33 +1,75 @@
 package page_objects;
 
 import elements.Dropdown;
-import elements.Link;
-import helpers.DateFormatHelper;
+import elements.Label;
+import models.Ticket;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class BookTicketPage extends GeneralPage {
-    //Locator
-    private final Dropdown _selectDepartDate = new Dropdown(By.name("Date"));
-    private final Dropdown _selectDepartFrom = new Dropdown(By.name("DepartStation"));
-    private final Dropdown _selectArriveAt = new Dropdown(By.name("ArriveStation"));
-    private final Dropdown _selectSeatType = new Dropdown(By.name("SeatType"));
-    private final Dropdown _selectTicketAmount = new Dropdown(By.name("TicketAmount"));
-    private final Dropdown _btnBookTicket = new Dropdown(By.cssSelector("[type='submit']"));
-    //private final Link _linkNew = new Link(By.cssSelector("#ArriveStation>center>a"));
 
-    public void bookTicket() {
-        String currentDate = DateFormatHelper.getCurrentDate();
-        String bookedDate = DateFormatHelper.getDateFromNowAsString(5);
-        String departStation = "Huế";
+    String xpathForTableTD = "//td[count(//th[text()='%s']/preceding-sibling::th)+1]";
 
-        _selectDepartDate.scrollToView();
-        _selectDepartDate.selectItemByText(bookedDate);
-        _selectDepartFrom.selectItemByText(departStation);
+    //Locators
+    private final Dropdown selectDepartDate = new Dropdown(By.name("Date"));
+    private final Dropdown selectDepartFrom = new Dropdown(By.name("DepartStation"));
+    private final Dropdown selectArriveAt = new Dropdown(By.name("ArriveStation"));
+    private final Dropdown selectSeatType = new Dropdown(By.name("SeatType"));
+    private final Dropdown selectTicketAmount = new Dropdown(By.name("TicketAmount"));
+    private final Dropdown btnBookTicket = new Dropdown(By.cssSelector("[type='submit']"));
+    private final Label lblSuccessfulBookingTitle = new Label(By.cssSelector("#content>h1"));
+    private final Label thAllTicketHeaderInfo = new Label(By.cssSelector(".TableSmallHeader>th"));
 
-        _selectArriveAt.selectItemByText("Đà Nẵng");
-        _selectArriveAt.isSelected();
-        _selectSeatType.selectItemByText("Soft seat");
-        _selectTicketAmount.selectItemByText("2");
-        _btnBookTicket.click();
+    //Methods
+    public Label getTicketInfoByHeader(String headerName) {
+        return new Label(By.xpath(String.format(xpathForTableTD, headerName)));
+    }
+
+    public Map<String, String> getTicketInfoAsMap() {
+        Map<String, String> result = new HashMap<>();
+        for (String header : getTicketTableHeaderAsList()) {
+            result.put(header, getTicketInfoByHeader(header).getText());
+        }
+        return result;
+    }
+
+    public Ticket bookTicket(Ticket ticket) {
+        selectDepartFrom.selectItemByText(ticket.getDepartFrom());
+        selectDepartDate.selectItemByText(ticket.getDepartDate());
+        selectSeatType.selectItemByText(ticket.getSeatType());
+        selectTicketAmount.selectItemByText(String.valueOf(ticket.getTicketAmount()));
+        selectArriveAt.selectItemByText(ticket.getArriveAt());
+        btnBookTicket.submit();
+
+        Ticket newTicket = new Ticket();
+
+        Map<String, String> ticketInfo = getTicketInfoAsMap();
+        newTicket.setDepartFrom(ticketInfo.get("Depart Station"));
+        newTicket.setArriveAt(ticketInfo.get("Arrive Station"));
+        newTicket.setSeatType(ticketInfo.get("Seat Type"));
+        newTicket.setDepartDate(ticketInfo.get("Depart Date"));
+        newTicket.setBookingDate(ticketInfo.get("Book Date"));
+        newTicket.setExpiredDate(ticketInfo.get("Expired Date"));
+        newTicket.setTicketAmount(Long.valueOf(ticketInfo.get("Amount")));
+        newTicket.setTotalPrice(Long.valueOf(ticketInfo.get("Total Price")));
+
+        return newTicket;
+    }
+
+    public String getSuccessfulBookingTitle() {
+        return lblSuccessfulBookingTitle.getText();
+    }
+
+    public List<String> getTicketTableHeaderAsList() {
+        List<String> result = new ArrayList<>();
+        for (WebElement item : thAllTicketHeaderInfo.findElements()) {
+            result.add(item.getText());
+        }
+        return result;
     }
 }

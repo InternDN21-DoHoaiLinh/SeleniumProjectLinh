@@ -4,16 +4,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateFormatHelper {
-    private static LocalDate myDateObj = LocalDate.now();
-
     public static String getCurrentDate() {
-        return getDateFromNowAsString(0);
+        LocalDate dateObj = LocalDate.now();
+        return formatDate(dateObj);
     }
 
     public static String getDateFromNowAsString(long number) {
-        myDateObj = myDateObj.plusDays(number);
+        LocalDate dateObj = LocalDate.now().plusDays(number);
+        return formatDate(dateObj);
+    }
+
+    public static String formatDate(LocalDate localDate) {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("M/d/yyyy");
-        String formattedDate = myDateObj.format(myFormatObj);
-        return formattedDate;
+        return localDate.format(myFormatObj);
     }
 }

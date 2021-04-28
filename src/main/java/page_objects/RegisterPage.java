@@ -1,94 +1,54 @@
 package page_objects;
 
-import helpers.BrowserHelpers;
+import elements.Button;
+import elements.TextBox;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class RegisterPage extends GeneralPage {
-    private final By _txtEmail = By.cssSelector("#email");
-    private final By _txtPassword = By.cssSelector("#password");
-    private final By _txtConfirmPassword = By.cssSelector("#confirmPassword");
-    private final By _txtPID = By.cssSelector("#pid");
-    private final By _btnRegister = By.cssSelector("[type=submit]");
+    private final TextBox txtEmail = new TextBox(By.cssSelector("#email"));
+    private final TextBox txtPassword = new TextBox(By.cssSelector("#password"));
+    private final TextBox txtConfirmPassword = new TextBox(By.cssSelector("#confirmPassword"));
+    private final TextBox txtPID = new TextBox(By.cssSelector("#pid"));
+    private final Button btnRegister = new Button(By.cssSelector("[type=submit]"));
     //Error messages
-    private final By _txtFinalMessage = By.cssSelector("[class='message error']");
-    private final By _txtEmailMessage = By.cssSelector(".email>.validation-error");
-    private final By _txtPasswordMessage = By.cssSelector(".password>.validation-error");
-    private final By _txtConfirmPasswordMessage = By.cssSelector(".confirm-password>.validation-error");
-    private final By _txtPIDNumberMessage = By.cssSelector(".pid-number>.validation-error");
+    private final TextBox txtFinalMessage = new TextBox(By.cssSelector("[class='message error']"));
+    private final TextBox txtEmailMessage = new TextBox(By.cssSelector(".email>.validation-error"));
+    private final TextBox txtPasswordMessage = new TextBox(By.cssSelector(".password>.validation-error"));
+    private final TextBox txtConfirmPasswordMessage = new TextBox(By.cssSelector(".confirm-password>.validation-error"));
+    private final TextBox txtPIDNumberMessage = new TextBox(By.cssSelector(".pid-number>.validation-error"));
     //Successful message
-    private final By _txtSuccessfulMessage = By.cssSelector("#content p");
-
-    public WebElement getTxtEmail() {
-        return BrowserHelpers.getWebDriver().findElement(_txtEmail);
-    }
-
-    public WebElement getTxtPassword() {
-        return BrowserHelpers.getWebDriver().findElement(_txtPassword);
-    }
-
-    public WebElement getTxtConfirmPassword() {
-        return BrowserHelpers.getWebDriver().findElement(_txtConfirmPassword);
-    }
-
-    public WebElement getTxtPID() {
-        return BrowserHelpers.getWebDriver().findElement(_txtPID);
-    }
-
-    public WebElement getBtnRegister() {
-        return BrowserHelpers.getWebDriver().findElement(_btnRegister);
-    }
-
-    public WebElement getTxtFinalMessage() {
-        return BrowserHelpers.getWebDriver().findElement(_txtFinalMessage);
-    }
-
-    public WebElement getTxtEmailMessage() {
-        return BrowserHelpers.getWebDriver().findElement(_txtEmailMessage);
-    }
-
-    public WebElement getTxtPasswordMessage() {
-        return BrowserHelpers.getWebDriver().findElement(_txtPasswordMessage);
-    }
-
-    public WebElement getTxtConfirmPasswordMessage() {
-        return BrowserHelpers.getWebDriver().findElement(_txtConfirmPasswordMessage);
-    }
-
-    public WebElement getTxtPIDNumberMessage() {
-        return BrowserHelpers.getWebDriver().findElement(_txtPIDNumberMessage);
-    }
-
-    public WebElement getTxtSuccessfulMessage() {
-        return BrowserHelpers.getWebDriver().findElement(_txtSuccessfulMessage);
-    }
+    private final TextBox txtSuccessfulMessage = new TextBox(By.cssSelector("#content p"));
 
     //Methods
     public void register(String email, String password, String confirmPassword, String pid) {
-        getTxtEmail().sendKeys(email);
-        getTxtPassword().sendKeys(password);
-        getTxtConfirmPassword().sendKeys(confirmPassword);
-        getTxtPID().sendKeys(pid);
-        getBtnRegister().submit();
+        txtEmail.enterText(email);
+        txtPassword.enterText(password);
+        txtConfirmPassword.enterText(confirmPassword);
+        txtPID.enterText(pid);
+        btnRegister.submit();
     }
 
     public String getFinalErrorMessage() {
-        return getTxtFinalMessage().getText();
+        return txtFinalMessage.getText();
     }
+
     public String getEmailErrorMessage() {
-        return getTxtEmailMessage().getText();
+        return txtEmailMessage.getText();
     }
+
     public String getPasswordErrorMessage() {
-        return getTxtPasswordMessage().getText();
+        return txtPasswordMessage.getText();
     }
+
     public String getConfirmPasswordErrorMessage() {
-        return getTxtConfirmPasswordMessage().getText();
+        return txtConfirmPasswordMessage.getText();
     }
+
     public String getPIDErrorMessage() {
-        return getTxtPIDNumberMessage().getText();
+        return txtPIDNumberMessage.getText();
     }
 
     public String getSuccessfulMessage() {
-        return getTxtSuccessfulMessage().getText();
+        return txtSuccessfulMessage.getText();
     }
 }

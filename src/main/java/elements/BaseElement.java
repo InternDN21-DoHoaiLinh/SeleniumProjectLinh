@@ -29,6 +29,10 @@ public class BaseElement {
         findElement().click();
     }
 
+    public void submit() {
+        findElement().submit();
+    }
+
     public String getText() {
         if (isExisted()) {
             return findElement().getText();
@@ -37,7 +41,12 @@ public class BaseElement {
     }
 
     public boolean isDisplayed() {
-        return findElement().isDisplayed();
+        try {
+            return findElement().isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
     public boolean isExisted() {
@@ -49,7 +58,7 @@ public class BaseElement {
     }
 
     public boolean isSelected() {
-        return findElement().isDisplayed();
+        return findElement().isSelected();
     }
 
     public void disableElement() {
@@ -65,5 +74,10 @@ public class BaseElement {
     public void waitForElementExist() {
         WebDriverWait webDriverWait = new WebDriverWait(BrowserHelpers.getWebDriver(), Constant.DEFAULT_TIME_WAIT);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void waitForChildElementExist() {
+        WebDriverWait webDriverWait = new WebDriverWait(BrowserHelpers.getWebDriver(), Constant.DEFAULT_TIME_WAIT);
+        webDriverWait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(locator, By.tagName("option")));
     }
 }

@@ -1,17 +1,16 @@
 package page_objects;
 
+import elements.Button;
 import elements.Label;
-import elements.Tab;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 public class GeneralPage {
     //Locators
-    private final Tab tabLogin = new Tab(By.cssSelector("a[href='/Account/Login.cshtml']"));
-    private final Tab tabLogout = new Tab(By.cssSelector("a[href='/Account/Logout']"));
+    private final Button tabLogin = new Button(By.cssSelector("a[href='/Account/Login.cshtml']"));
+    private final Button tabLogout = new Button(By.cssSelector("a[href='/Account/Logout']"));
     private final Label lblWelcomeMessage = new Label(By.cssSelector("div[class='account']>strong"));
-    private final Tab tabRegister = new Tab(By.cssSelector("a[href^='/Account/Register']"));
-    private final Tab tabBookTicket = new Tab(By.cssSelector("a[href^='/Page/BookTicketPage']"));
+    private final Button tabRegister = new Button(By.cssSelector("a[href^='/Account/Register']"));
+    private final Button tabBookTicket = new Button(By.cssSelector("a[href^='/Page/BookTicketPage']"));
 
     //Methods
     public String getWelcomeMessage() {

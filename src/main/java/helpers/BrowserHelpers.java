@@ -23,12 +23,9 @@ public class BrowserHelpers {
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
-            case EDGE:
+            default:
                 WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver();
-                break;
-            default:
-                System.out.println("You're in a big trouble!I'm just kidding.");
                 break;
         }
 
