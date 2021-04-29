@@ -2,6 +2,7 @@ package page_objects;
 
 import elements.Button;
 import elements.TextBox;
+import helpers.ElementHelper;
 import org.openqa.selenium.By;
 
 public class RegisterPage extends GeneralPage {
@@ -21,6 +22,7 @@ public class RegisterPage extends GeneralPage {
 
     //Methods
     public void register(String email, String password, String confirmPassword, String pid) {
+        ElementHelper.scrollToView(txtEmail.findElement());
         txtEmail.enterText(email);
         txtPassword.enterText(password);
         txtConfirmPassword.enterText(confirmPassword);

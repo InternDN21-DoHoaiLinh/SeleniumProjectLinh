@@ -1,12 +1,10 @@
 package elements;
 
 import helpers.BrowserHelpers;
-import helpers.Constant;
+import common.Log;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -15,6 +13,10 @@ public class BaseElement {
 
     public BaseElement(By locator) {
         this.locator = locator;
+    }
+
+    public String getAttribute(String attribute) {
+        return findElement().getAttribute(attribute);
     }
 
     public WebElement findElement() {
@@ -34,22 +36,19 @@ public class BaseElement {
     }
 
     public String getText() {
-        if (isExisted()) {
-            return findElement().getText();
-        }
-        return "";
+        return findElement().getText();
     }
 
     public boolean isDisplayed() {
         try {
             return findElement().isDisplayed();
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
+            Log.error("> Element is not displayed! More info: " + e.getMessage());
             return false;
         }
-
     }
 
-    public boolean isExisted() {
+    public boolean isEmpty() {
         return !findElements().isEmpty();
     }
 
@@ -59,25 +58,5 @@ public class BaseElement {
 
     public boolean isSelected() {
         return findElement().isSelected();
-    }
-
-    public void disableElement() {
-        JavascriptExecutor js = (JavascriptExecutor) BrowserHelpers.getWebDriver();
-        js.executeScript("arguments[0].setAttribute('style', 'display:none')", findElement());
-    }
-
-    public void scrollToView() {
-        JavascriptExecutor js = (JavascriptExecutor) BrowserHelpers.getWebDriver();
-        js.executeScript("arguments[0].scrollIntoView(true);", findElement());
-    }
-
-    public void waitForElementExist() {
-        WebDriverWait webDriverWait = new WebDriverWait(BrowserHelpers.getWebDriver(), Constant.DEFAULT_TIME_WAIT);
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    public void waitForChildElementExist() {
-        WebDriverWait webDriverWait = new WebDriverWait(BrowserHelpers.getWebDriver(), Constant.DEFAULT_TIME_WAIT);
-        webDriverWait.until(ExpectedConditions.presenceOfNestedElementLocatedBy(locator, By.tagName("option")));
     }
 }

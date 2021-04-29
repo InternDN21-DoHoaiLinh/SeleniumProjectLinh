@@ -3,6 +3,7 @@ package page_objects;
 import elements.Button;
 import elements.Label;
 import elements.TextBox;
+import helpers.ElementHelper;
 import org.openqa.selenium.By;
 
 public class LoginPage extends GeneralPage {
@@ -16,6 +17,7 @@ public class LoginPage extends GeneralPage {
 
     //Methods
     public void login(String email, String password) {
+        ElementHelper.scrollToView(txtPassword.findElement());
         txtUsername.enterText(email);
         txtPassword.enterText(password);
         btnLogin.submit();
