@@ -6,12 +6,6 @@ import elements.Table;
 import helpers.ElementHelper;
 import models.Ticket;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class BookTicketPage extends GeneralPage {
 
@@ -28,21 +22,8 @@ public class BookTicketPage extends GeneralPage {
     private final Table tblSuccessfulBookingTable = new Table(By.cssSelector(".MyTable"));
 
     //Methods
-
-    public List<String> getTicketTableHeaderAsList() {
-        return tblSuccessfulBookingTable.getTableHeader("th");
-    }
-
     public String getCellValueByHeader(String headerName) {
         return new Label(By.xpath(String.format(xpathForTableCell, headerName))).getText();
-    }
-
-    public Map<String, String> getTicketInfoAsMap() {
-        Map<String, String> result = new HashMap<>();
-        for (String header : getTicketTableHeaderAsList()) {
-            result.put(header, getCellValueByHeader(header));
-        }
-        return result;
     }
 
     public void bookTicket(Ticket ticket) {
@@ -58,15 +39,14 @@ public class BookTicketPage extends GeneralPage {
     public Ticket getSuccessfulTicketInfo() {
         Ticket newTicket = new Ticket();
 
-        Map<String, String> ticketInfo = getTicketInfoAsMap();
-        newTicket.setDepartFrom(ticketInfo.get("Depart Station"));
-        newTicket.setArriveAt(ticketInfo.get("Arrive Station"));
-        newTicket.setSeatType(ticketInfo.get("Seat Type"));
-        newTicket.setDepartDate(ticketInfo.get("Depart Date"));
-        newTicket.setBookingDate(ticketInfo.get("Book Date"));
-        newTicket.setExpiredDate(ticketInfo.get("Expired Date"));
-        newTicket.setTicketAmount(Long.valueOf(ticketInfo.get("Amount")));
-        newTicket.setTotalPrice(Long.valueOf(ticketInfo.get("Total Price")));
+        newTicket.setDepartFrom(getCellValueByHeader("Depart Station"));
+        newTicket.setArriveAt(getCellValueByHeader("Arrive Station"));
+        newTicket.setSeatType(getCellValueByHeader("Seat Type"));
+        newTicket.setDepartDate(getCellValueByHeader("Depart Date"));
+        newTicket.setBookingDate(getCellValueByHeader("Book Date"));
+        newTicket.setExpiredDate(getCellValueByHeader("Expired Date"));
+        newTicket.setTicketAmount(Long.valueOf(getCellValueByHeader("Amount")));
+        newTicket.setTotalPrice(Long.valueOf(getCellValueByHeader("Total Price")));
 
         return newTicket;
     }

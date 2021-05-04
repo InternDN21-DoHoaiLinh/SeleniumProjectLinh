@@ -20,7 +20,7 @@ public class LoginPage extends GeneralPage {
         ElementHelper.scrollToView(txtPassword.findElement());
         txtUsername.enterText(email);
         txtPassword.enterText(password);
-        btnLogin.submit();
+        btnLogin.click();
     }
 
     public String getErrorMsg() {

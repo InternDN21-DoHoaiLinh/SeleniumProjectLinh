@@ -1,8 +1,8 @@
 package tests;
 
+import common.Log;
 import helpers.Constant;
 import helpers.DataHelper;
-import common.Log;
 import models.Ticket;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -42,7 +42,7 @@ public class TestBookTicket extends TestBase {
         Log.info("> Get Ticket info.");
         Ticket actualTicket = bookTicketPage.getSuccessfulTicketInfo();
 
-                Log.info("> Verify the title of Successful page.");
+        Log.info("> Verify the title of Successful page.");
         Assert.assertEquals(bookTicketPage.getSuccessfulBookingTitle(), "Ticket Booked Successfully!", "Ticket booked failed or Successful message do not match.");
 
         Log.info("> Verify Info Table");
