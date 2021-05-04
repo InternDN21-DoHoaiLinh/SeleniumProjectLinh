@@ -18,10 +18,10 @@ public class TestLogin extends TestBase {
         Log.info("> Go to Login Page");
         homePage.goToLogin();
 
-        Log.info("> Login with valid email and password");
+        Log.info("> Login with valid username and password");
         loginPage.login(Constant.USERNAME, Constant.PASSWORD);
 
         Log.info("> Verify the welcome message");
-        Assert.assertEquals(homePage.getWelcomeMsg(), "Welcome " + Constant.USERNAME, "Welcome message not match!");
+        Assert.assertEquals(homePage.getWelcomeMsg(), "Welcome " + Constant.USERNAME, "Welcome message does not match!");
     }
 }
