@@ -54,7 +54,7 @@ public class BrowserHelpers {
     public static void handleConfirmationAlert(boolean action) {
         Alert alert = BrowserHelpers.getWebDriver().switchTo().alert();
         Log.info("-> Alert Message " + alert.getText());
-        if(action)
+        if (action)
             alert.accept();
         else alert.dismiss();
     }

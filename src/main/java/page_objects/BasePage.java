@@ -42,6 +42,18 @@ public class BasePage {
         return lblWelcomeMsg.getText();
     }
 
+    public boolean isMyTicketTabDisplayed() {
+        return tabMyTicket.isDisplayed();
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return tabChangePassword.isDisplayed();
+    }
+
+    public boolean isLogOutTabDisplayed() {
+        return tabLogout.isDisplayed();
+    }
+
     public String getLoginTitle() {
         return lblLoginTitle.getText();
     }
