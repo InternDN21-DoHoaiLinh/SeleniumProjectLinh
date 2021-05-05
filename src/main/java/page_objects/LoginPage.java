@@ -13,7 +13,6 @@ public class LoginPage extends BasePage {
     private final Label msgFinalErrorMsg = new Label(By.cssSelector("p.message"));
     private final Label msgEmailErrorMsg = new Label(By.cssSelector(".username>.validation-error"));
     private final Label msgPasswordErrorMsg = new Label(By.cssSelector(".password>.validation-error"));
-    private final Label lblLoginTitle = new Label(By.cssSelector("#content>h1"));
 
     public void login(String email, String password) {
         ElementHelper.scrollToView(txtEmail.findElement());
@@ -24,9 +23,5 @@ public class LoginPage extends BasePage {
 
     public String getFinalErrorMsg() {
         return msgFinalErrorMsg.getText();
-    }
-
-    public String getLoginTitle() {
-        return lblLoginTitle.getText();
     }
 }
