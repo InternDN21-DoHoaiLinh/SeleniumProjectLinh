@@ -1,8 +1,8 @@
 package tests;
 
+import common.Log;
 import helpers.BrowserHelpers;
 import helpers.Constant;
-import common.Log;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
