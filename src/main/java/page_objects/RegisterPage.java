@@ -13,6 +13,7 @@ public class RegisterPage extends BasePage {
     private final TextBox txtPID = new TextBox(By.id("pid"));
     private final Button btnRegister = new Button(By.cssSelector(".form-actions>input[value='Register']"));
     private final Label lblSuccessMsg = new Label(By.cssSelector("#content>p"));
+    private final Label lblErrorMsg = new Label(By.cssSelector("p.error"));
 
     public void register(String email, String password, String confirmPassword, String pid) {
         ElementHelper.scrollToView(txtEmail.findElement());
@@ -25,5 +26,9 @@ public class RegisterPage extends BasePage {
 
     public String getSuccessMsg() {
         return lblSuccessMsg.getText();
+    }
+
+    public String getErrorMsg() {
+        return lblErrorMsg.getText();
     }
 }
