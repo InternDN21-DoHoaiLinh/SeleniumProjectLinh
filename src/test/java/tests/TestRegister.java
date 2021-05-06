@@ -40,9 +40,28 @@ public class TestRegister extends TestBase {
         Log.info("> Register with 'Confirm password' is not the same with 'Password'");
         String password = "12345678";
         String confirmPassword = "23456789";
+
         registerPage.register(Constant.NOT_REGISTERED_EMAIL, password, confirmPassword, Constant.DEFAULT_PID);
 
         Log.info("> Verify error message");
         Assert.assertEquals(registerPage.getErrorMsg(), Constant.REGISTER_ERROR_MESSAGE, "Error message does not match");
+    }
+
+    @Test(description = "User can't create account while password and PID fields are empty")
+    public void TC11() {
+        Log.startTestCase("TC11");
+
+        Log.info("> Go to Register page");
+        homePage.goToRegister();
+
+        Log.info("> Register without password and PID number");
+        registerPage.register(Constant.NOT_REGISTERED_EMAIL, "", "", "");
+
+        Log.info("> Verify error messages");
+        String passwordErrorMsg = "Invalid password length";
+        String pidErrorMsg = "Invalid ID length";
+        Assert.assertEquals(registerPage.getErrorMsg(), Constant.REGISTER_ERROR_MESSAGE, "Error message does not match!");
+        Assert.assertEquals(registerPage.getPasswordErrorMsg(), passwordErrorMsg, "Password Error message does not match!");
+        Assert.assertEquals(registerPage.getPIDErrorMsg(), pidErrorMsg, "PID Error message does not match!");
     }
 }
