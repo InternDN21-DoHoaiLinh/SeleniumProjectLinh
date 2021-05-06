@@ -1,6 +1,7 @@
 package tests;
 
 import common.Log;
+import helpers.Constant;
 import helpers.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -22,8 +23,8 @@ public class TestChangePassword extends TestBase {
         Log.info("> Create a new account for password changing purpose");
         homePage.goToRegister();
         String email = DataHelper.getRandomEmail();
-        String password = DataHelper.getRandomPassword();
-        registerPage.register(email, password, password, DataHelper.getRandomPIDNumber());
+        String password = "12345678";
+        registerPage.register(email, password, password, Constant.DEFAULT_PID);
 
         Log.info("> Login");
         registerPage.goToLogin();
@@ -31,9 +32,11 @@ public class TestChangePassword extends TestBase {
 
         Log.info("> Change password");
         homePage.goToChangePassword();
-        changePasswordPage.changePassword(password, "dohoailinh199", "dohoailinh199");
+        String newPassword = "dohoailinh199";
+        changePasswordPage.changePassword(password, newPassword, newPassword);
 
         Log.info("> Verify success message");
-        Assert.assertEquals(changePasswordPage.getSuccessMessage(), "Your password has been updated!", "Success message does not match!");
+        String successMsg = "Your password has been updated!";
+        Assert.assertEquals(changePasswordPage.getSuccessMessage(), successMsg, "Success message does not match!");
     }
 }

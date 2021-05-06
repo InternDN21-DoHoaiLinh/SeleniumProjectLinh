@@ -21,13 +21,14 @@ public class TestRegister extends TestBase {
 
         Log.info("> Create fake credentials");
         String email = DataHelper.getRandomEmail();
-        String password = DataHelper.getRandomPassword();
+        String password = "12345678";
 
         Log.info("> Register a new account with valid credentials");
         registerPage.register(email, password, password, Constant.DEFAULT_PID);
 
         Log.info("> Verify the successful message.");
-        Assert.assertEquals(registerPage.getSuccessMsg(), "You're here", "Success message does not match!");
+        String successMsg = "You're here";
+        Assert.assertEquals(registerPage.getSuccessMsg(), successMsg, "Success message does not match!");
     }
 
     @Test(description = "User can't create account with 'Confirm password' is not the same with 'Password'")
@@ -37,9 +38,11 @@ public class TestRegister extends TestBase {
         homePage.goToRegister();
 
         Log.info("> Register with 'Confirm password' is not the same with 'Password'");
-        registerPage.register(Constant.NOT_REGISTERED_EMAIL, "12345678", "23456789", Constant.DEFAULT_PID);
+        String password = "12345678";
+        String confirmPassword = "23456789";
+        registerPage.register(Constant.NOT_REGISTERED_EMAIL, password, confirmPassword, Constant.DEFAULT_PID);
 
         Log.info("> Verify error message");
-        Assert.assertEquals(registerPage.getErrorMsg(), "There're errors in the form. Please correct the errors and try again.", "Error message does not match");
+        Assert.assertEquals(registerPage.getErrorMsg(), Constant.REGISTER_ERROR_MESSAGE, "Error message does not match");
     }
 }

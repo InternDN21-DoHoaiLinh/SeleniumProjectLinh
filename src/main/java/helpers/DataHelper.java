@@ -20,17 +20,9 @@ public class DataHelper {
         return faker.letterify(result);
     }
 
-    public static String getRandomPassword() {
-        return getRandomText(Constant.DEFAULT_PASSWORD_LENGTH);
-    }
-
     public static String getRandomNumber(int length) {
         String result = StringUtils.repeat("#", length);
         return faker.numerify(result);
-    }
-
-    public static String getRandomPIDNumber() {
-        return getRandomNumber(Constant.DEFAULT_PID_LENGTH);
     }
 
     public static String getCurrentDate() {
