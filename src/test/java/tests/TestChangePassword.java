@@ -16,7 +16,7 @@ public class TestChangePassword extends TestBase {
     ChangePasswordPage changePasswordPage = new ChangePasswordPage();
 
     @Test(description = "User can change password")
-    public void C09() {
+    public void TC09() {
         Log.startTestCase("TC09");
 
         Log.info("> Create a new account for password changing purpose");
