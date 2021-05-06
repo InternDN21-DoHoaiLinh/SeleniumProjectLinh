@@ -14,6 +14,8 @@ public class RegisterPage extends BasePage {
     private final Button btnRegister = new Button(By.cssSelector(".form-actions>input[value='Register']"));
     private final Label lblSuccessMsg = new Label(By.cssSelector("#content>p"));
     private final Label lblErrorMsg = new Label(By.cssSelector("p.error"));
+    private final Label lblPasswordErrorMsg = new Label(By.cssSelector(".password>label.validation-error"));
+    private final Label lblPIDErrorMsg = new Label(By.cssSelector(".pid-number>label.validation-error"));
 
     public void register(String email, String password, String confirmPassword, String pid) {
         ElementHelper.scrollToView(txtEmail.findElement());
@@ -30,5 +32,13 @@ public class RegisterPage extends BasePage {
 
     public String getErrorMsg() {
         return lblErrorMsg.getText();
+    }
+
+    public String getPasswordErrorMsg() {
+        return lblPasswordErrorMsg.getText();
+    }
+
+    public String getPIDErrorMsg() {
+        return lblPIDErrorMsg.getText();
     }
 }
