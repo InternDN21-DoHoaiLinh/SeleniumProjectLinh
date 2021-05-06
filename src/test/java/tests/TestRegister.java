@@ -1,6 +1,7 @@
 package tests;
 
 import common.Log;
+import helpers.Constant;
 import helpers.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -20,13 +21,28 @@ public class TestRegister extends TestBase {
 
         Log.info("> Create fake credentials");
         String email = DataHelper.getRandomEmail();
-        String password = DataHelper.getRandomPassword();
-        String pid = DataHelper.getRandomPIDNumber();
+        String password = "12345678";
 
         Log.info("> Register a new account with valid credentials");
-        registerPage.register(email, password, password, pid);
+        registerPage.register(email, password, password, Constant.DEFAULT_PID);
 
         Log.info("> Verify the successful message.");
-        Assert.assertEquals(registerPage.getSuccessMsg(), "You're here", "Success message does not match!");
+        String successMsg = "You're here";
+        Assert.assertEquals(registerPage.getSuccessMsg(), successMsg, "Success message does not match!");
+    }
+
+    @Test(description = "User can't create account with 'Confirm password' is not the same with 'Password'")
+    public void TC10() {
+        Log.startTestCase("TC10");
+        Log.info("> Go to Register page");
+        homePage.goToRegister();
+
+        Log.info("> Register with 'Confirm password' is not the same with 'Password'");
+        String password = "12345678";
+        String confirmPassword = "23456789";
+        registerPage.register(Constant.NOT_REGISTERED_EMAIL, password, confirmPassword, Constant.DEFAULT_PID);
+
+        Log.info("> Verify error message");
+        Assert.assertEquals(registerPage.getErrorMsg(), Constant.REGISTER_ERROR_MESSAGE, "Error message does not match");
     }
 }
