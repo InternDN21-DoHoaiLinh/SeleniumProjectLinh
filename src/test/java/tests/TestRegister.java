@@ -27,6 +27,6 @@ public class TestRegister extends TestBase {
         registerPage.register(email, password, password, pid);
 
         Log.info("> Verify the successful message.");
-        Assert.assertEquals(registerPage.getSuccessMsg(), "Thank you for registering your account", "Success message does not match!");
+        Assert.assertEquals(registerPage.getSuccessMsg(), "You're here", "Success message does not match!");
     }
 }

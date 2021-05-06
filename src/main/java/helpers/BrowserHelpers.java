@@ -1,8 +1,6 @@
 package helpers;
 
-import common.Log;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -51,11 +49,11 @@ public class BrowserHelpers {
     }
 
     //Alert
-    public static void handleConfirmationAlert(boolean action) {
-        Alert alert = BrowserHelpers.getWebDriver().switchTo().alert();
-        Log.info("-> Alert Message " + alert.getText());
-        if (action)
-            alert.accept();
-        else alert.dismiss();
+    public static void acceptAlert() {
+        driver.switchTo().alert().accept();
+    }
+
+    public static void dismissAlert() {
+        driver.switchTo().alert().dismiss();
     }
 }

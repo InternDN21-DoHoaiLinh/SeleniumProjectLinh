@@ -41,7 +41,7 @@ public class TestLogin extends TestBase {
         loginPage.login("", Constant.PASSWORD);
 
         Log.info("> Verify the error message");
-        Assert.assertEquals(loginPage.getFinalErrorMsg(), Constant.LOGIN_ERROR_MSG, "Error message does not match!");
+        Assert.assertEquals(loginPage.getFinalErrorMsg(), "There was a problem with your login and/or errors exist in your form.", "Error message does not match!");
     }
 
     @Test(description = "User cannot log into Railway with invalid password")
@@ -55,7 +55,7 @@ public class TestLogin extends TestBase {
         loginPage.login(Constant.USERNAME, DataHelper.getRandomText(6));
 
         Log.info("> Verify the error message");
-        Assert.assertEquals(loginPage.getFinalErrorMsg(), Constant.LOGIN_ERROR_MSG, "Error message does not match!");
+        Assert.assertEquals(loginPage.getFinalErrorMsg(), "Invalid username or password. Please try again.", "Error message does not match!");
     }
 
     @Test(description = "Login page displays when un-logged User clicks on 'Book ticket' tab")
