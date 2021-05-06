@@ -4,18 +4,21 @@
         <parameter name="browser" value="CHROME" />
         <classes>
             <class name="tests.TestLogin"/>
+            <class name="tests.TestRegister"/>
         </classes>
     </test>
     <test name="FirefoxTest">
         <parameter name="browser" value="FIREFOX" />
         <classes>
             <class name="tests.TestLogin"/>
+            <class name="tests.TestRegister"/>
         </classes>
     </test>
     <test name="EdgeTest">
         <parameter name="browser" value="EDGE" />
         <classes>
             <class name="tests.TestLogin"/>
+            <class name="tests.TestRegister"/>
         </classes>
     </test>
 </suite>
