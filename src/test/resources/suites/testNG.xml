@@ -5,6 +5,7 @@
         <classes>
             <class name="tests.TestLogin"/>
             <class name="tests.TestRegister"/>
+            <class name="tests.TestChangePassword"/>
         </classes>
     </test>
     <test name="FirefoxTest">
@@ -12,6 +13,7 @@
         <classes>
             <class name="tests.TestLogin"/>
             <class name="tests.TestRegister"/>
+            <class name="tests.TestChangePassword"/>
         </classes>
     </test>
     <test name="EdgeTest">
@@ -19,6 +21,7 @@
         <classes>
             <class name="tests.TestLogin"/>
             <class name="tests.TestRegister"/>
+            <class name="tests.TestChangePassword"/>
         </classes>
     </test>
 </suite>
