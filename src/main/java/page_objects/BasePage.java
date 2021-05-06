@@ -12,7 +12,7 @@ public class BasePage {
     private final Link tabLogout = new Link(By.cssSelector("#menu a[href='/Account/Logout']"));
     private final Link tabChangePassword = new Link(By.cssSelector("#menu a[href='/Account/ChangePassword.cshtml']"));
     private final Label lblWelcomeMsg = new Label(By.cssSelector(".account"));
-    private final Label lblLoginTitle = new Label(By.cssSelector("#content>h1[align='center']"));
+    private final Label lblLoginTitle = new Label(By.cssSelector("#content>h1"));
 
     public void goToLogin() {
         tabLogin.click();
@@ -42,7 +42,19 @@ public class BasePage {
         return lblWelcomeMsg.getText();
     }
 
-    public String getLoginTitle() {
+    public boolean isMyTicketTabDisplayed() {
+        return tabMyTicket.isDisplayed();
+    }
+
+    public boolean isChangePasswordTabDisplayed() {
+        return tabChangePassword.isDisplayed();
+    }
+
+    public boolean isLogOutTabDisplayed() {
+        return tabLogout.isDisplayed();
+    }
+
+    public String getTitle() {
         return lblLoginTitle.getText();
     }
 }
