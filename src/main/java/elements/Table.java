@@ -7,3 +7,4 @@ public class Table extends BaseElement {
         super(locator);
     }
 }
+
