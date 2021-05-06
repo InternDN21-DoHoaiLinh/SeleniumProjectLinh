@@ -35,6 +35,14 @@ public class DataHelper {
         return formatDate(dateObj);
     }
 
+    public static String getExpiredDate() {
+        return getDateFromNow(Constant.EXPIRED_DAYS_NUMBER);
+    }
+
+    public static String getDepartDate() {
+        return getDateFromNow(Constant.DAYS_FROM_CURRENT_DATE);
+    }
+
     public static String formatDate(LocalDate localDate) {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern(Constant.DEFAULT_DATE_FORMAT);
         return localDate.format(myFormatObj);
