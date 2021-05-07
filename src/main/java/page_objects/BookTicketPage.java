@@ -10,8 +10,6 @@ import org.openqa.selenium.By;
 public class BookTicketPage extends BasePage {
 
     String xpathForTableCell = "//td[count(//th[text()='%s']/preceding-sibling::th)+1]";
-    String xpathForDepartStationOption = "//select[@name='DepartStation']/option[text()='%s']";
-    String xpathForArriveStationOption = "//select[@name='ArriveStation']/option[text()='%s']";
 
     private final Dropdown drnDepartDate = new Dropdown(By.cssSelector("select[name='Date']"));
     private final Dropdown drnDepartFrom = new Dropdown(By.cssSelector("select[name='DepartStation']"));
@@ -50,10 +48,10 @@ public class BookTicketPage extends BasePage {
     }
 
     public boolean isDepartStationSelected(String departStation) {
-        return new Dropdown(By.xpath(String.format(xpathForDepartStationOption, departStation))).isSelected();
+        return drnDepartFrom.getSelectedOptionAsText().equals(departStation);
     }
 
     public boolean isArriveStationSelected(String arriveStation) {
-        return new Dropdown(By.xpath(String.format(xpathForArriveStationOption, arriveStation))).isSelected();
+        return drnArriveAt.getSelectedOptionAsText().equals(arriveStation);
     }
 }

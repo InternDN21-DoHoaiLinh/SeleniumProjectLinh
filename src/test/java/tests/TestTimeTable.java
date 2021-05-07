@@ -18,7 +18,7 @@ public class TestTimeTable extends TestBase {
     public void TC15() {
         Log.startTestCase("TC15");
 
-        Log.info("> Create a new account for password changing purpose");
+        Log.info("> Create a new account");
         homePage.goToRegister();
         String email = DataHelper.getRandomEmail();
         String password = "12345678";
@@ -26,7 +26,7 @@ public class TestTimeTable extends TestBase {
 
         Log.info("> Login and go to Timetable page");
         homePage.goToLogin();
-        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+        loginPage.login(email, password);
         homePage.goToTimetable();
 
         Log.info("> Click on book ticket link on Train Timetable");
