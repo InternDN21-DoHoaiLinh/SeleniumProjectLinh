@@ -26,7 +26,7 @@ public class TestTimeTable extends TestBase {
 
         Log.info("> Login and go to Timetable page");
         homePage.goToLogin();
-        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+        loginPage.login(email, password);
         homePage.goToTimetable();
 
         Log.info("> Click on book ticket link on Train Timetable");
