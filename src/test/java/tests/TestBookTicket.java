@@ -25,9 +25,9 @@ public class TestBookTicket extends TestBase {
         homePage.goToBookTicket();
 
         Log.info("> Book a ticket");
-        String departDate = DataHelper.getDepartDate();
+        String departDate = DataHelper.getDateFromNow(Constant.DAYS_FROM_CURRENT_DATE);
         String bookingDate = DataHelper.getCurrentDate();
-        String expiredDate = DataHelper.getExpiredDate();
+        String expiredDate = DataHelper.getDateFromNow(Constant.EXPIRED_DAYS_NUMBER);
         String departFrom = "Sài Gòn";
         String arriveAt = "Nha Trang";
         String seatType = "Soft bed with air conditioner";
