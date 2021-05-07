@@ -46,4 +46,12 @@ public class BookTicketPage extends BasePage {
 
         return newTicket;
     }
+
+    public boolean isDepartStationSelected(String departStation) {
+        return drnDepartFrom.getSelectedOptionAsText().equals(departStation);
+    }
+
+    public boolean isArriveStationSelected(String arriveStation) {
+        return drnArriveAt.getSelectedOptionAsText().equals(arriveStation);
+    }
 }

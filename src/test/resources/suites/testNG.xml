@@ -6,6 +6,9 @@
             <class name="tests.TestLogin"/>
             <class name="tests.TestRegister"/>
             <class name="tests.TestChangePassword"/>
+            <class name="tests.TestBookTicket"/>
+            <class name="tests.TestTimeTable"/>
+            <class name="tests.TestMyTicket"/>
         </classes>
     </test>
     <test name="FirefoxTest">
@@ -14,6 +17,9 @@
             <class name="tests.TestLogin"/>
             <class name="tests.TestRegister"/>
             <class name="tests.TestChangePassword"/>
+            <class name="tests.TestBookTicket"/>
+            <class name="tests.TestTimeTable"/>
+            <class name="tests.TestMyTicket"/>
         </classes>
     </test>
     <test name="EdgeTest">
@@ -22,6 +28,9 @@
             <class name="tests.TestLogin"/>
             <class name="tests.TestRegister"/>
             <class name="tests.TestChangePassword"/>
+            <class name="tests.TestBookTicket"/>
+            <class name="tests.TestTimeTable"/>
+            <class name="tests.TestMyTicket"/>
         </classes>
     </test>
 </suite>
