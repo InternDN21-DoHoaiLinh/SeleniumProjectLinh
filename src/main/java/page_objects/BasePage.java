@@ -11,6 +11,7 @@ public class BasePage {
     private final Link tabMyTicket = new Link(By.cssSelector("#menu a[href='/Page/ManageTicket.cshtml']"));
     private final Link tabLogout = new Link(By.cssSelector("#menu a[href='/Account/Logout']"));
     private final Link tabChangePassword = new Link(By.cssSelector("#menu a[href='/Account/ChangePassword.cshtml']"));
+    private final Link tabTimetable = new Link(By.cssSelector("#menu a[href='TrainTimeListPage.cshtml']"));
     private final Label lblWelcomeMsg = new Label(By.cssSelector(".account"));
     private final Label lblLoginTitle = new Label(By.cssSelector("#content>h1"));
 
@@ -36,6 +37,10 @@ public class BasePage {
 
     public void goToChangePassword() {
         tabChangePassword.click();
+    }
+
+    public void goToTimetable() {
+        tabTimetable.click();
     }
 
     public String getWelcomeMsg() {
